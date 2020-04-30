@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Word Count
  * Plugin URI:        https://sampadinfo.com/plugins/word-count/
- * Description:       Handle post count with this plugin.
+ * Description:       Handle word count of blog post text  and reading time with this plugin.
  * Version:           1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
