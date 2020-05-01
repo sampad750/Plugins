@@ -1,0 +1,63 @@
+=============================
+ Class 6.1
+=============================
+ * অ্যাকশন হুক নিয়ে বিস্তারিত, সাথে ওয়ার্ডপ্রেস অপশন টেবিলে ডেটা সেভ করা
+ * do_action এর মাধ্যমে add_action এর tag তৈরি করা হয়।
+
+do_action('before_action');
+some content
+do_action('after_content');
+
+functions.php তে লিখতে হবে
+
+function before_add_p_tag(){
+    echo "<p>";
+}
+add_action('before_action', 'before_add_p_tag');
+
+function after_add_p_tag(){
+    echo "</p>";
+}
+add_action('after_content', 'after_add_p_tag');
+
+result: <p>some content</p>
+
+=============================
+ Class 6.2
+=============================
+ * ফিল্টার হুক এবং হুকের প্যারামিটার নিয়ে বিস্তারিত
+ * apply_filters এর মাধ্যমে add_filter এর tag তৈরি করা হয়।
+ * filter hook এ সবসময় return হবে।
+
+echo apply_filters('what_i_show', 'default_text'); // result: default_text
+
+functin change_default_text($text){
+    $text = 'change text';
+    return;
+}
+// what_i_show এটাকে filter hook বলে।
+add_filter('what_i_show', 'change_default_text'); // result: change text
+
+apply_filters এ 2টা পেরামিটার থাকলে
+==================================
+echo apply_filters('add_two_parameter', 'first content', 'second content'); // result: first content second content
+
+function modify_parameter($parameter1, $parameter2){
+    return ucwords($parameter1). strtoupper($parameter2);
+}
+add_filter( 'add_two_parameter', 'modify_parameter' , 10, 2 ); এখানে ১০( default থাকে ) priority। priority যত কম হবে আগে রান হবে। আর ২ হল কয়টা parameter আছে।
+=============================
+ Class 6.3
+=============================
+ * হুক রিমুভ করা
+ add_action('action_tag', 'action_function', 7);
+ // এটাকে remove করতে হলে
+ remove_action( 'action_tag', 'action_function', 7 );
+  // filter এর ক্ষেত্রে একই
+ remove_filter( 'filter_tag', 'filter_function', 7 );
+ =============================
+  Class 6.4
+ =============================
+ *প্লাগেবল ফাংশন, কি এবং কেন
+ প্লাগেবল ফাংশন মানে এমন function যেটা user চাইলে পুরোটা আবার নতুন করে লিখা যায়। parent function টা থাকবে।
+ child function টি আগে load হবে
