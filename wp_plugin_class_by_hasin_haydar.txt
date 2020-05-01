@@ -1,0 +1,24 @@
+<?php
+/* Class 6.1
+ * অ্যাকশন হুক নিয়ে বিস্তারিত, সাথে ওয়ার্ডপ্রেস অপশন টেবিলে ডেটা সেভ করা
+ * do_action এর মাধ্যমে add_action এর tag তৈরি করা হয়।
+ */
+do_action('before_p_tag_action');
+<p>some content</p>
+do_action('after_p_tag_content');
+
+functions.php তে লিখতে হবে
+
+function before_p_tag_content(){
+    echo "fast text";
+}
+add_action('before_p_tag_action', 'before_p_tag_content');
+
+function after_p_tag_content(){
+    echo "End text";
+}
+add_action('after_p_tag_action', 'after_p_tag_content');
+
+result: fast text <p>some content</p>End text
+
+
