@@ -3,22 +3,22 @@
  * অ্যাকশন হুক নিয়ে বিস্তারিত, সাথে ওয়ার্ডপ্রেস অপশন টেবিলে ডেটা সেভ করা
  * do_action এর মাধ্যমে add_action এর tag তৈরি করা হয়।
  */
-do_action('before_p_tag_action');
-<p>some content</p>
-do_action('after_p_tag_content');
+do_action('before_action');
+some content
+do_action('after_content');
 
 functions.php তে লিখতে হবে
 
-function before_p_tag_content(){
-    echo "fast text";
+function before_add_p_tag(){
+    echo "<p>";
 }
-add_action('before_p_tag_action', 'before_p_tag_content');
+add_action('before_action', 'before_add_p_tag');
 
-function after_p_tag_content(){
-    echo "End text";
+function after_add_p_tag(){
+    echo "</p>";
 }
-add_action('after_p_tag_action', 'after_p_tag_content');
+add_action('after_content', 'after_add_p_tag');
 
-result: fast text <p>some content</p>End text
+result: <p>some content</p>
 
 
