@@ -1,0 +1,64 @@
+note: printf auto echo হয়।
+sprintf কে return করতে হয়।
+========================
+৮.২ - আমাদের প্রথম শর্টকোড
+=========================
+function my_button($attr){
+    sprintf('<a href="%s" class="%s">%s</a>', $attr['btn_link'], $attr['btn_class'], $attr['btn_label']);
+}
+add_shortcode('button', 'my_button');
+// এটার shortcode: [button link="www.google.com" class="my_class" btn_label="Button label"/]
+
+function my_button2($attr, $content){
+    sprintf('<a href="%s" class="%s">%s</a>', $attr['btn_link'], $attr['btn_class'], $content);
+}
+add_shortcode('button2', 'my_button2');
+// এটার shortcode: [button2 link="www.google.com" class="my_class"]Button Content[/button2]
+
+
+৮.৩ - শর্টকোডের ডিফল্ট প্যারামিটার এবং কনটেন্ট
+function my_button_d($attr){
+    $default = [
+        'btn_link' => 'www.google.com',
+        'btn_class' => 'my_class',
+        'btn_label' => '',
+    ];
+    $button_attr = shortcode_atts( $default, $attr );
+
+    sprintf('<a href="%s" class="%s">%s</a>', $button_attr['btn_link'], $button_attr['btn_class'], $button_attr['btn_label']);
+}
+add_shortcode('button', 'my_button_d');
+// এটার shortcode: [button link="www.google.com" class="my_class" btn_label="Button label"/]
+
+৮.৪ - শর্টকোড নেস্টিং
+function text_upper_case($attr, $content){
+    return strtoupper(do_shortcode($content)); // [uc]এখানে short code থাকলে run হবে[/uc]
+}
+add_shortcode('uc', 'text_upper_case'); // এটার shortcode: [uc]hello world[/uc] result: HELLO WORLD
+
+৮.৫ - গুগল ম্যাপস শর্টকোড
+function my_google_map($attributes){
+    $default = array(
+        'place'=>'Dhaka Museum',
+        'width'=>'800',
+        'height'=>'500',
+        'zoom'=>'14'
+    );
+
+    $params = shortcode_atts($default,$attributes);
+
+    $map = <<<EOD
+        <div>
+            <div>
+                <iframe width="{$params['width']}" height="{$params['height']}"
+                        src="https://maps.google.com/maps?q={$params['place']}&t=&z={$params['zoom']}&ie=UTF8&iwloc=&output=embed"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                </iframe>
+            </div>
+        </div>
+EOD;
+
+    return $map;
+}
+add_shortcode('gmap','my_google_map');
+// এটার shortcode: [gmap place="dhaka" width="900" height="600"/]

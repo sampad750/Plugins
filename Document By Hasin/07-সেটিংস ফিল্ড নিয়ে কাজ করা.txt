@@ -1,0 +1,7 @@
+** ৭.১ থেকে ৭.৭ সব গুলা টিউটোরিয়াল posts-to-qrcode plugin এ দেখানো হয়েছে।
+
+এই সিরিজে দেখানো হয়েছে wordpress function দিয়ে বিভিন্ন ধরনের custom field যেমনঃ text field, checkbox, multiple checkbox, troggle etc .
+
+posts-to-qrcode এই plugin টা active করলে settings>general এ custom field  গুলা দেখা যাবে।
+
+৭.৭ টিউটোরিয়াল  টা complate হয় নাই।
